@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -28,72 +29,94 @@ namespace Sofisa.Desafio.Servico
                     }
                 }
             }
-            catch (System.Exception ex)
+            catch (Exception)
             {
-
-                throw new System.Exception(ex.Message);
+                return default;
             }
 
         }
         public async Task<T> GetAPIAsync<T>(string endPointURL)
         {
-            using (HttpClient client = new HttpClient())
+            try
             {
-                var response = await client.GetAsync(endPointURL);
+                using (HttpClient client = new HttpClient())
+                {
+                    var response = await client.GetAsync(endPointURL);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    var retorno = await response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<T>(retorno);
-                }
-                else
-                {
-                    return default;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var retorno = await response.Content.ReadAsStringAsync();
+                        return JsonConvert.DeserializeObject<T>(retorno);
+                    }
+                    else
+                    {
+                        return default;
+                    }
                 }
             }
+            catch (Exception)
+            {
+                return default;
+            }
+
         }
 
         public async Task<T> DeleteAPIAsync<T>(string endPointURL)
         {
-            using (HttpClient client = new HttpClient())
+            try
             {
-                var response = await client.DeleteAsync(endPointURL);
+                using (HttpClient client = new HttpClient())
+                {
+                    var response = await client.DeleteAsync(endPointURL);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    var retorno = await response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<T>(retorno);
-                }
-                else
-                {
-                    return default;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var retorno = await response.Content.ReadAsStringAsync();
+                        return JsonConvert.DeserializeObject<T>(retorno);
+                    }
+                    else
+                    {
+                        return default;
+                    }
                 }
             }
+            catch (Exception)
+            {
+                return default;
+            }
+
         }
         public async Task<T> PostAPIAsync<T>(string endPointURL, T obj)
         {
-
-            using (HttpClient client = new HttpClient())
+            try
             {
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var jsonContent = JsonConvert.SerializeObject(obj);
-                var contentString = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-                contentString.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-                var response = await client.PostAsync(endPointURL, contentString);
-
-                if (response.IsSuccessStatusCode)
+                using (HttpClient client = new HttpClient())
                 {
-                    string retorno = await response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<T>(retorno);
-                }
-                else
-                {
-                    return default;
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    var jsonContent = JsonConvert.SerializeObject(obj);
+                    var contentString = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                    contentString.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                    var response = await client.PostAsync(endPointURL, contentString);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string retorno = await response.Content.ReadAsStringAsync();
+                        return JsonConvert.DeserializeObject<T>(retorno);
+                    }
+                    else
+                    {
+                        return default;
+                    }
                 }
             }
+            catch (Exception)
+            {
+                return default;
+            }
+
         }
     }
 }

@@ -137,10 +137,10 @@
     <AndroidResource Include="Resources\drawable\img_banco.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\img_favoritoOFF.png" />
+    <AndroidResource Include="Resources\drawable\img_favoritoON.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\img_favoritoON.png" />
+    <AndroidResource Include="Resources\drawable\img_favoritoOFF.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
