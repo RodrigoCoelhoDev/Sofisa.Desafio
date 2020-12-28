@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Meus Repositórios"
+             Visual="Material"
+             x:Class="Sofisa.Desafio.Views.MeuRepositorio"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <ActivityIndicator x:Name="Progresso" Color="DarkTurquoise"/>
+            <Frame Style="{StaticResource FrameStyle}" >
+                <ListView x:Name="lvRepositorio"
+                          CachingStrategy="RecycleElement"
+                          HasUnevenRows="true" 
+                          IsPullToRefreshEnabled="True"
+                          ItemSelected="lvRepositorio_ItemSelected"
+                          ItemTapped="lvRepositorio_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Padding="5">
+                                    <Image Source="img_git.png" />
+                                    <StackLayout HorizontalOptions="StartAndExpand">
+                                        <Label Text="{Binding name}" TextColor="Black" Style="{StaticResource MediumLabelStyle}"/>
+                                        <Label Text="{Binding description}" TextColor="Gray" Style="{StaticResource SmallLabelStyle}"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </Frame>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

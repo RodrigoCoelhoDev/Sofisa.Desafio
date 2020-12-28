@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Visual="Material"
+             x:Class="Sofisa.Desafio.Views.MenuPrincipal"
+             Title="Desafio Sofisa"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <MasterDetailPage.Master>
+        <ContentPage Title="Menu" Padding="0">
+            <ContentPage.Content>
+                <StackLayout>
+                    <Grid BackgroundColor="DarkTurquoise">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="10"/>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="1" Grid.Column="1" VerticalOptions="Start" HorizontalOptions="Start" Source="img_logoSofisa.png"/>
+                        <Label
+                          Grid.Column="1"
+                          Grid.Row="2"
+                          Text="Desafio Sofisa"
+                          TextColor="White" FontSize="Large"/>
+                    </Grid>
+
+                    <TableView Intent="Menu">
+                        <TableSection>
+                            <ViewCell Tapped="MeuRepositorio">
+                                <StackLayout Padding="15,10">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="30"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Column="0" Source="img_repositorio.png"/>
+                                        <Label Grid.Column="1" Text="Meus Repositórios" VerticalTextAlignment="Center"/>
+                                    </Grid>
+                                </StackLayout>
+                            </ViewCell>
+
+                            <ViewCell Tapped="ProcurarRepositorio">
+                                <StackLayout Padding="15,10">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="30"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Column="0" Source="img_procurar.png"/>
+                                        <Label Grid.Column="1" Text="Procurar Repositórios" VerticalTextAlignment="Center"/>
+                                    </Grid>
+                                </StackLayout>
+                            </ViewCell>
+
+                            <ViewCell Tapped="Favoritos">
+                                <StackLayout Padding="15,10">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="30"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Column="0" Source="img_favorito.png"/>
+                                        <Label Grid.Column="1" Text="Favoritos" VerticalTextAlignment="Center"/>
+                                    </Grid>
+                                </StackLayout>
+                            </ViewCell>
+                        </TableSection>
+                    </TableView>
+                </StackLayout>
+            </ContentPage.Content>
+        </ContentPage>
+    </MasterDetailPage.Master>
+
+</MasterDetailPage>

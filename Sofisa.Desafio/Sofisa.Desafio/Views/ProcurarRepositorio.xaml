@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Procurar Repositório"
+             Visual="Material"
+             x:Class="Sofisa.Desafio.Views.ProcurarRepositorio"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Frame Style="{StaticResource FrameStyle}" VerticalOptions="Fill" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="45" />
+                    </Grid.ColumnDefinitions>
+                    <SearchBar x:Name="txtNomeRepositorio" Grid.Row="0" Grid.Column="0" Placeholder="Nome do Repositório" Style="{StaticResource MediumEntryStyle}"/>
+                    <Button x:Name="btnBuscar" Grid.Row="0" Grid.Column="1" ImageSource="btn_buscar.png" Clicked="btnBuscar_Clicked" Style="{StaticResource ButtonStyle}"/>
+                </Grid>
+            </Frame>
+            <ActivityIndicator x:Name="Progresso" Color="DarkTurquoise"/>
+            
+            <Frame Style="{StaticResource FrameStyle}" >
+                <ListView x:Name="lvRepositorio"
+                          CachingStrategy="RecycleElement"
+                          HasUnevenRows="true" 
+                          IsPullToRefreshEnabled="False"
+                          ItemSelected="lvRepositorio_ItemSelected"
+                          ItemTapped="lvRepositorio_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Padding="5">
+                                    <Image Source="img_git.png" />
+                                    <StackLayout HorizontalOptions="StartAndExpand">
+                                        <Label Text="{Binding name}" TextColor="Black" Style="{StaticResource MediumLabelStyle}"/>
+                                        <Label Text="{Binding description}" TextColor="Gray" Style="{StaticResource SmallLabelStyle}"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Frame>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
